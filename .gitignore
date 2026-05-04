@@ -1,0 +1,5 @@
+# ignore python memory files
+__pycache__/
+*.py[cod]
+*$py.class
+test.py
