@@ -1,4 +1,4 @@
-from lexer_tokens import Token, TokenType
+from calc_tokens import Token, TokenType
 
 
 class Lexer:
@@ -42,7 +42,6 @@ class Lexer:
             else:
                 self.advance()
                 yield Token(TokenType.INVALID)
-                # raise Exception(f"unknown character '{self.current_char}'")
 
     def read_number(self):
         num_str = ""

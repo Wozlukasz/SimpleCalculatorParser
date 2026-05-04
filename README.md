@@ -1,4 +1,4 @@
-# Parser wyrażeń matematycznych (prosty kalkulator) oparty o wyrażenia regularne
+# Prosty parser wyrażeń matematycznych
 
 ## Autorzy:
 - Julian Szamotuła
