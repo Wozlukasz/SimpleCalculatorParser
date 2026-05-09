@@ -39,6 +39,14 @@ class Lexer:
             elif self.current_char == '^':
                 self.advance()
                 yield Token(TokenType.POWER)
+            elif self.current_char == '=':
+                self.advance()
+                yield Token(TokenType.EQUAL)
+            elif self.current_char.isalpha():
+                yield self.read_identifier()
+            elif self.current_char == ',':
+                self.advance()
+                yield Token(TokenType.COMMA)
             else:
                 self.advance()
                 yield Token(TokenType.INVALID)
@@ -58,7 +66,19 @@ class Lexer:
             num_str += '0'
 
         return Token(TokenType.NUMBER, float(num_str))
+    
 
+    def read_identifier(self):
+        name = ""
+        while self.current_char != None and (self.current_char.isalpha() or self.current_char.isdigit() or self.current_char == "_"):
+            name += self.current_char
+            self.advance()
+
+        return Token(TokenType.IDENTIFIER, name)
+
+
+
+# to jest tak jedynie wstępnie i przykładowo, ale może się przyda
 class LexerError(Exception):
     def __init__(self, message, line, column):
         self.message = message

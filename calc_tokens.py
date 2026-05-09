@@ -8,8 +8,11 @@ class TokenType(Enum):
     RBRACKET = auto()
 
     NUMBER   = auto()
-    VARIABLE = auto()
+    IDENTIFIER = auto()
     FUNCTION = auto()
+
+    EQUAL    = auto()
+    COMMA    = auto()
 
     MINUS    = auto()
     PLUS     = auto()
