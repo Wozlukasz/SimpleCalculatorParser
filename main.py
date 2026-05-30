@@ -1,13 +1,33 @@
 from calc_lexer import Lexer
 from calc_parser import Parser
+from calc_interpreter import Interpreter
+
+interpreter = Interpreter()
+
+print("Kalkulator uruchomiony. Wpisz równanie lub 'exit' aby wyjść.")
 
 while True:
-    text = input("> ")
-    lexer = Lexer(text)
-    tokens_list = list(lexer.tokenize())
+    try:
+        text = input("> ")
+        if text.strip().lower() in ['exit', 'quit']:
+            break
+        if not text.strip():
+            continue
 
-    parser = Parser(tokens_list)
-    ast = parser.parse()
+        lexer = Lexer(text)
+        tokens_list = list(lexer.tokenize())
 
-    print(tokens_list)
-    print(ast)
+        parser = Parser(tokens_list)
+        ast = parser.parse()
+
+        if ast is None:
+            print("Błąd składni.")
+            continue
+
+        result = interpreter.visit(ast)
+
+        if result is not None:
+            print(result)
+
+    except Exception as e:
+        print(f"{e}")
