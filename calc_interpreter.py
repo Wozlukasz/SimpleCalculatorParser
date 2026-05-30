@@ -1,11 +1,10 @@
 import math
 from nodes import *
 
-
 class Interpreter:
     def __init__(self):
         self.variables = {}
-
+        # matematyczne funkcje
         self.functions = {
             "sin": math.sin,
             "cos": math.cos,
