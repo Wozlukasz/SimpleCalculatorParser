@@ -54,8 +54,13 @@ class Interpreter:
     def visit_EqualNode(self, node):
         if isinstance(node.left, VariableNode):
             value = self.visit(node.right)
-            self.variables[node.left.name] = value
-            return value
+            var_name = node.left.name
+
+            self.variables[var_name] = value
+
+            print(f"Utworzono zmienną {var_name} = {value}")
+
+            return None
         else:
             raise SyntaxError("Błąd: Po lewej stronie znaku równości musi znajdować się nazwa zmiennej.")
 
