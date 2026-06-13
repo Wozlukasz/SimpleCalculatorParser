@@ -24,6 +24,8 @@ while True:
             print("Błąd składni.")
             continue
 
+        print(ast)
+
         result = interpreter.visit(ast)
 
         if result is not None:
