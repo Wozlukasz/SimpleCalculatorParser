@@ -53,6 +53,32 @@ Utworzono zmienną y = 15.0
 
 ```
 
+wpisanie `\ast` przełącza rysowanie drzewa AST (włącz / wyłącz).
+
+```
+
+> \ast
+włączono rysowanie AST
+
+> 6^2-1*7
+29.0
+└── SubtractNode
+    ├── PowerNode
+    │   ├── NumberNode: 6.0
+    │   └── NumberNode: 2.0
+    └── MultiplyNode
+        ├── NumberNode: 1.0
+        └── NumberNode: 7.0
+
+> \ast
+wyłączono rysowanie AST
+
+> 3*log(3)
+3.295836866004329
+
+```
+
+
 ## Struktura projektu
 
 Architektura projektu została podzielona na moduły odpowiadające poszczególnym etapom przetwarzania tekstu:

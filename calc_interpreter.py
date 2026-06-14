@@ -83,5 +83,7 @@ class Interpreter:
                 return func(*evaluated_args)
             except TypeError:
                 raise Exception(f"Błąd: Nieprawidłowa liczba argumentów dla funkcji '{node.name}'.")
+            except ValueError as e:
+                raise ValueError(f"Błąd wywołania funkcji '{node.name}': {e}")
         else:
             raise NameError(f"Błąd: Nieznana funkcja '{node.name}'.")

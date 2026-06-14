@@ -79,3 +79,30 @@ class EqualNode:
 
     def __repr__(self):
     	return f"{self.left} = {self.right}"
+    
+
+def print_tree(node, prefix="", is_last=True):
+    if node is None:
+        return
+
+    connector = "└── " if is_last else "├── "
+    label = node.__class__.__name__
+
+    if hasattr(node, 'value'):
+        label += f": {node.value}"
+    elif hasattr(node, 'name'):
+        label += f": {node.name}"
+        
+    print(prefix + connector + label)
+
+    children = [] 
+    if hasattr(node, 'left') and hasattr(node, 'right'):
+        children = [node.left, node.right]
+    elif hasattr(node, 'right'):  
+        children = [node.right]
+    elif hasattr(node, 'args'):
+        children = list(node.args)
+
+    prefix += "    " if is_last else "│   "
+    for index, child in enumerate(children):
+        print_tree(child, prefix, index == len(children) - 1)

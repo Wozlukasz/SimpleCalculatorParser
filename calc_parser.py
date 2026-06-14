@@ -77,6 +77,7 @@ class Parser:
 
     def find_brackets_and_values(self):
         token = self.current_token
+        if self.current_token is None: raise SyntaxError("Błąd składni: Brak wyrażenia po '(' lub na końcu wejścia.")
 
         if token.type == TokenType.INVALID:
             raise SyntaxError("Błąd składni: Wprowadzono nieznany lub niepoprawny znak.")
@@ -86,7 +87,7 @@ class Parser:
             return NumberNode(token.value)
 
         if token.type == TokenType.IDENTIFIER:
-            name = self.current_token.value
+            name = token.value
             self.advance()
 
             if self.current_token != None and self.current_token.type == TokenType.LBRACKET:
