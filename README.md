@@ -90,4 +90,12 @@ Architektura projektu została podzielona na moduły odpowiadające poszczególn
 * `calc_parser.py` - Parser oparty na metodzie zejść rekurencyjnych (Recursive Descent Parser). Przetwarza listę tokenów i buduje z nich odpowiednio zagnieżdżone drzewo AST, pilnując poprawności składni.
 * `calc_interpreter.py` - Właściwy interpreter wykorzystujący wzorzec *Visitor*. Odwiedza poszczególne węzły drzewa AST od dołu do góry i oblicza ich ostateczną wartość liczbową, operując również na zmiennych i funkcjach wbudowanych.
 
+## Gramatyka
+
+Na różnych etapach odczytywania wyrażenia program korzysta z różnych gramatyk w chierarchii Chomsky'ego.
+
+* `lexer` - korzysta z gramatyki typu 3 (regularnej) do sczytywania kolejnych, pojedynczych znaków. Zapamiętuje odczytany ciąg (nieterminał) i dopisuje do niego jeden symbol z prawej (terminał, lub nieterminał gdy odczyt się nie skończył). Każde odczytane słowo tworzy jeden token.
+* `parser` - działa już na wyższym poziomie porządkując tokeny - korzysta z gramatyki typu 2 (bezkontekstowe), tworząc strukturę drzewa. Jeden token (nieterminał z lewej strony) zamienia na ciąg terminałów (wartości) lub nieterminałów (węzłów-dzieci).
+* `interpreter` - korzysta z gramatyki kontekstowej do kontroli kolejności definicji zmiennych.  
+ 
 
