@@ -75,13 +75,3 @@ class Lexer:
             self.advance()
 
         return Token(TokenType.IDENTIFIER, name)
-
-
-
-# to jest tak jedynie wstępnie i przykładowo, ale może się przyda
-class LexerError(Exception):
-    def __init__(self, message, line, column):
-        self.message = message
-        self.line = line
-        self.column = column
-        super().__init__(f"Błąd w linii {line}, kolumnie {column}: {message}")
